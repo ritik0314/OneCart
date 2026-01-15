@@ -2,7 +2,8 @@ import React, { createContext } from 'react'
 
 export const authDataContext = createContext()
 function AuthContext({children}) {
-    let serverUrl = "http://localhost:8000"
+    // Use Vite env var when deployed; fall back to localhost for local dev
+    let serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000"
 
     let value = {
       serverUrl
