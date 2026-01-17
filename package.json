@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "postinstall": "node ./scripts/ensure-detect-libc-shim-root.cjs || true"
+    "postinstall": "node ./scripts/ensure-detect-libc-shim-root.cjs || true",
+    "build": "bash render-build.sh"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
