@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import google from '../assets/google.png'
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
+import { HiDotsVertical } from "react-icons/hi";
 import { useState } from 'react';
 import { useContext } from 'react';
 import { authDataContext } from '../context/AuthContext';
@@ -15,6 +16,7 @@ import Loading from '../component/Loading';
 
 function Login() {
     let [show,setShow] = useState(false)
+    let [showAdminMenu, setShowAdminMenu] = useState(false)
         let [email,setEmail] = useState("")
         let [password,setPassword] = useState("")
         let {serverUrl} = useContext(authDataContext)
@@ -59,10 +61,32 @@ function Login() {
             
         }
   return (
-    <div className='w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white] flex flex-col items-center justify-start'>
-    <div className='w-[100%] h-[80px] flex items-center justify-start px-[30px] gap-[10px] cursor-pointer' onClick={()=>navigate("/")}>
-    <img className='w-[40px]' src={Logo} alt="" />
-    <h1 className='text-[22px] font-sans '>OneCart</h1>
+    <div className='w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white] flex flex-col items-center justify-start relative'>
+    <div className='w-[100%] h-[80px] flex items-center justify-between px-[30px]'>
+        <div className='flex items-center gap-[10px] cursor-pointer' onClick={()=>navigate("/")}>
+            <img className='w-[40px]' src={Logo} alt="" />
+            <h1 className='text-[22px] font-sans '>OneCart</h1>
+        </div>
+        
+        <div className='relative'>
+            <HiDotsVertical 
+                className='w-[25px] h-[25px] cursor-pointer hover:text-[#6060f5] transition-colors' 
+                onClick={() => setShowAdminMenu(prev => !prev)}
+            />
+            {showAdminMenu && (
+                <div className='absolute top-[40px] right-0 w-[200px] bg-[#1a1a1a] border-[1px] border-[#96969635] rounded-lg shadow-lg p-[10px] z-10'>
+                    <a 
+                        href="https://onecart-admin1-5jwv.onrender.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className='block w-full text-center py-[12px] px-[15px] hover:bg-[#6060f5] rounded-lg transition-colors text-[15px]'
+                        onClick={() => setShowAdminMenu(false)}
+                    >
+                        Login as Admin
+                    </a>
+                </div>
+            )}
+        </div>
     </div>
 
     <div className='w-[100%] h-[100px] flex items-center justify-center flex-col gap-[10px]'>
