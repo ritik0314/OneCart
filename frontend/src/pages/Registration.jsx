@@ -40,7 +40,9 @@ function Registration() {
 
         } catch (error) {
             console.log(error)
-            toast.error("User Registration Failed")
+            const message = error?.response?.data?.message || error?.message || "User Registration Failed"
+            toast.error(message)
+            setLoading(false)
         }
     }
 
