@@ -62,8 +62,16 @@ function Nav() {
             </ul>
         </div>
         <div className='w-[30%] flex items-center justify-end gap-[20px]'>
-                 {!showSearch && <IoSearchCircleOutline ref={searchButtonRef} className='w-[38px] h-[38px] text-[#000000]  cursor-pointer' onClick={()=>{setShowSearch(prev=>!prev);navigate("/collection")}}/>}
-                     {showSearch && <IoSearchCircleSharp ref={searchButtonRef} className='w-[38px] h-[38px] text-[#000000]  cursor-pointer' onClick={()=>setShowSearch(prev=>!prev)}/>}
+                 {!showSearch && (
+                     <button ref={searchButtonRef} type="button" className='flex items-center justify-center' onClick={()=>{setShowSearch(prev=>!prev);navigate("/collection")}}>
+                         <IoSearchCircleOutline className='w-[38px] h-[38px] text-[#000000]  cursor-pointer'/>
+                     </button>
+                 )}
+                     {showSearch && (
+                        <button ref={searchButtonRef} type="button" className='flex items-center justify-center' onClick={()=>setShowSearch(prev=>!prev)}>
+                            <IoSearchCircleSharp className='w-[38px] h-[38px] text-[#000000]  cursor-pointer'/>
+                        </button>
+                     )}
          {!userData && <FaCircleUser className='w-[29px] h-[29px] text-[#000000]  cursor-pointer' onClick={()=>setShowProfile(prev=>!prev)}/>}
          {userData && <div className='w-[30px] h-[30px] bg-[#080808] text-[white] rounded-full flex items-center justify-center cursor-pointer' onClick={()=>setShowProfile(prev=>!prev)}>{userData?.name.slice(0,1)}</div>}
          <MdOutlineShoppingCart className='w-[30px] h-[30px] text-[#000000]  cursor-pointer hidden md:block' onClick={()=>navigate("/cart")}/>
